@@ -38,7 +38,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'backend.onrender.com',
+    'django-student-portal-0x3s.onrender.com',
 ]
 
 
