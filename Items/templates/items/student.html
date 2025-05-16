@@ -1,0 +1,116 @@
+{% extends 'items/base.html' %}
+{% load static %}
+
+<title>
+{% block title %}
+
+Welcome to the post page
+{% endblock title %}
+</title>
+
+
+{% block content  %}
+
+<style>
+    
+.img{
+    width: 50px;
+    height: 50px;
+}
+
+
+body{
+  background: #7abecc !important;
+}
+</style>
+
+
+
+
+
+      
+      <div class="container">
+        
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="text" class="form-control" name="phone" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Sex</label>
+                        <select name="sex" class="form-control" required>
+                            <option value="">Select sex</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Course</label>
+                        <select name="course" class="form-control" required>
+                            <option value="">Select course</option>
+                            {% for course in courses %}
+                                <option value="{{ course.id }}">{{ course.name }} (₦{{ course.fee }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label class="form-label">Image <i>If any</i></label>
+                        <input class="form-control" type="file" name="image">
+                    </div>
+                
+                    <div class="d-grid mb-5">
+                        <button type="submit" class="btn btn-outline-primary btn-lg">Submit</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    {% endblock content %}
+    
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+
+<!-- <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div> -->
+<!--   
+  <div class="mb-3">
+    <label for="formFile" class="form-label">Default file input example</label>
+    <input class="form-control" type="file" id="formFile">
+  </div>
+  <button type="button" class="btn btn-outline-primary">Primary</button> -->

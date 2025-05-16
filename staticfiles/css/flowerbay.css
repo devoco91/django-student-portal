@@ -1,0 +1,573 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.firstnav{
+    background-color: white;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+.firstnav a{
+    text-decoration: none;
+    padding-left: 50px;
+    color: #592600;
+    font-size: 17px;
+    font-style: italic;
+}
+.firstnav a:hover{
+    text-decoration: underline;
+  
+}
+
+
+header{
+    background-color: #592600;
+    min-height: 70px;
+    position: sticky;
+    top: 0; 
+     z-index: 2000;
+    /* position: sticky; */
+    padding: 0.5rem 1rem;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  
+}
+
+#branding img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 50px;
+}
+
+
+nav ul a li{
+    display: inline;
+    float: left;
+    color: #ffffff;
+    padding: 20px;
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+nav ul a li:hover,
+nav ul a li:focus{
+ color: orangered;
+ transition: color 1.5s ease;
+}
+
+nav{
+    float: right;
+    margin-right: 50px;
+}
+nav ul a li button{
+    width: 140px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #592600;
+    font-size: 17px;
+    font-family: 500;
+    text-transform: uppercase;
+    margin-top: -10px;
+
+}
+
+nav ul a li button:hover{
+   text-decoration: underline;
+}
+
+
+.hero{
+    display: flex;
+    margin-left: 100px;
+    color: #592600;
+}
+
+.herotext{
+    width: 700px;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+.herotext h1{
+    width: 300px;
+    font-size: 40px;
+}
+.herotext p{
+    width: 450px;
+    font-size: 30px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.herotext button{
+    width: 150px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #592600;
+    color:#ffffff ;
+    font-size: 17px;
+
+    
+   
+}
+
+.herotext button:hover{
+  text-decoration: underline;
+
+    
+   
+}
+
+
+.heroimg img{
+    margin-left: 150px;
+}
+
+.display{
+    background-color: #e5e5e5;
+}
+
+.displaytext{
+    text-align: center;
+    padding-top: 50px;
+    color: #592600;
+}
+
+
+.displaytext h1{
+    font-size: 45px;
+}
+
+.card{
+    text-align: center;
+    color: #592600;
+    width: auto;
+    height: auto;
+    background-color: #ffffff;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.card h4{
+    font-size: 20px;
+    margin: 10px 0;;
+}
+.card p{
+    /* font-size: 20px; */
+    margin: 10px 0;;
+}
+.card button{
+    /* font-size: 20px; */
+    width: 120px;
+    height: 2rem;
+    border: none;
+    background-color: #592600;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.card img{
+  width: 100%;
+  border-radius: 5px;
+}
+
+
+.cards{
+    display: flex;
+    margin:0 100px;
+   
+}
+.cardss{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    /* grid-template-columns: auto auto auto; */
+    /* margin-left: 120px; */
+    margin:0 100px;
+   
+}
+
+.about{
+    background-color: #e5e5e5;
+    color: #592600;
+    display: flex;
+    padding-top: 70px;
+
+}
+
+
+.about-text{
+    width: 700px;
+    margin-left: 100px;
+
+}
+.about-text h1{
+   font-size: 35px;
+   margin-bottom: 10px;
+
+}
+.about-text p{
+   /* font-size: 35px; */
+   margin-right:  200px;
+   margin-bottom:10px;
+   
+
+}
+
+.about-text p:nth-child(3){
+    /* color: red; */
+    font-size: 12px;
+}
+
+.about-img img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: 200px;
+    margin-bottom: 50px;
+}
+
+footer{
+    background-color: #592600;
+    color: #ffffff;
+    padding-top: 50px;
+    display: flex;
+}
+
+
+.desc{
+    margin-left: 150px;
+    width: 300px;
+}
+.desc h3{
+  margin-bottom: 10px;
+  /* margin-right:20px ; */
+}
+
+.contact{
+    margin-left: 20px;
+
+}
+
+.contact h3{
+    margin-bottom: 10px;
+}
+
+.contact p{
+    margin-top: 20px;
+}
+
+.links{
+    margin-left: 30px;
+    display: block;
+    margin-bottom: 20px;
+}
+.links h3{
+    margin-bottom: 10px;
+}
+
+.links a{
+    
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding-top: 10px;
+}
+
+.signup {
+    margin-left: 30px;
+}
+ 
+.signup p{
+    margin-bottom: 20px;
+}
+ 
+.signup input{
+    width: 250px;
+    height: 37px;
+}
+ 
+.signup button{
+    width: 90px;
+    height: 30px;
+    border: none;
+    background-color: #592600;
+    color: #ffffff;
+    position: relative;
+    /* right: 180px; */
+    left: -180px;
+}
+ 
+
+
+@media(max-width:600px){
+
+            
+        .firstnav{
+          
+            margin-left: 10px;
+           
+        }
+
+        .firstnav a{
+         
+            padding-left: 10px;
+         
+        }
+       
+
+                
+        header{
+        
+            height: 280px;
+        
+        }
+
+        
+        #branding img{
+            width: 30px;
+            height: 30px;
+            float: none;
+        
+        }
+
+
+        nav ul a li{
+            display: block;
+            float: none;
+            padding: 10px;
+        
+            font-size: 15px;
+            font-weight: 0;
+        }
+
+
+        nav{
+            float: none;
+            margin-right: 50px;
+        }
+
+
+                
+        .hero{
+            display: block;
+            margin-left: 10px;
+            color: #592600;
+        }
+
+        .herotext{
+            width: 700px;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        .herotext h1{
+            width: 150px;
+            font-size: 30px;
+        }
+        .herotext p{
+            width: 150px;
+            font-size: 20px;
+          
+        }
+        
+
+
+        .heroimg img{
+            margin-left: 20px;
+            width: 200px;
+            height: 200px;
+            margin-top: 20px;
+        }
+
+
+            
+   
+    .displaytext{
+        text-align: left;
+        padding-top: 20px;
+        color: #592600;
+        margin-left: 70px;
+    }
+
+
+    .displaytext h1{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .displaytext p{
+        font-size: 10px;
+        width: 150px;
+    }
+
+    .card{
+        text-align:left;
+        color: #592600;
+        width: 200px;
+        
+    }
+
+    .card h4{
+        font-size: 20px;
+        margin: 10px 0;;
+    }
+    .card p{
+        /* font-size: 20px; */
+        margin: 10px 0;;
+    }
+    
+   
+
+    .cards{
+        display: block;
+        margin:0 10px;
+    
+    }
+      
+
+
+    .cardss{
+        /* display: flex; */
+        display:block;
+        grid-template-columns: 1fr 1fr 1fr ;
+        /* grid-template-columns: auto auto auto; */
+        /* margin-left: 120px; */
+        margin:0 10px;
+       
+    }
+    
+
+
+
+        
+    .about{
+        background-color: #e5e5e5;
+        color: #592600;
+        display: block;
+        padding-top: 70px;
+
+    }
+
+
+    .about-text{
+        width: 400px;
+        margin-left: 50px;
+
+    }
+    .about-text h1{
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-right: 150px;
+
+    }
+    .about-text p{
+    /* font-size: 35px; */
+    margin-right:  200px;
+    margin-bottom:10px;
+    
+
+    }
+
+    .about-text p:nth-child(3){
+        /* color: red; */
+        font-size: 12px;
+    }
+
+    .about-img img{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-left: 40px;
+        margin-bottom: 50px;
+        margin-top: 20px;
+    }
+
+
+
+
+    footer{
+        background-color: #592600;
+        color: #ffffff;
+        padding-top: 50px;
+        display: block;
+    }
+    
+    
+    .desc{
+        margin-left: 15px;
+        width: 200px;
+    }
+    .desc h3{
+      margin-bottom: 10px;
+      /* margin-right:20px ; */
+    }
+    
+    .contact{
+        margin-left: 20px;
+    
+    }
+    
+    .contact h3{
+        margin-bottom: 10px;
+    }
+    
+    .contact p{
+        margin-top: 20px;
+    }
+    
+    .links{
+        margin-left: 30px;
+        display: block;
+        margin-bottom: 20px;
+    }
+    .links h3{
+        margin-bottom: 10px;
+    }
+    
+    .links a{
+        
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+        padding-top: 10px;
+    }
+    
+    .signup {
+        margin-left: 30px;
+    }
+     
+    .signup p{
+        margin-bottom: 20px;
+        width: 150px;
+    }
+     
+    .signup input{
+        width: 250px;
+        height: 37px;
+        margin-bottom: 20px;
+    }
+     
+    .signup button{
+        width: 90px;
+        height: 30px;
+        border: none;
+        background-color: #592600;
+        color: #ffffff;
+        position: relative;
+        /* right: 180px; */
+        left: -180px;
+    }
+     
+
+
+
+}

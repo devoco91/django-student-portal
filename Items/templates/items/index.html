@@ -1,0 +1,126 @@
+{% extends 'items/base.html' %}
+{% load static %}
+
+{% comment %} {% block title %}
+
+Welcome to our shop
+{% endblock title %} {% endcomment %}
+
+
+{% block content  %}
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+      <div class="hero-content slide-left" id="hero-content">
+          <h1>Welcome to MyShop</h1>
+          <p>Your one-stop shop for amazing products.</p>
+          <div class="socials slide-bottom">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+      </div>
+      <img src="{% static './images/red-rose-flower-2079991.png' %}" alt="Hero Image" class="hero-image slide-right" id="hero-image">
+  </section>
+  
+  <!-- Product Section -->
+  <section class="products" id="products">
+      <h2>Our Products</h2>
+      <div class="product-container">
+        {% for good in goods %}
+          <div class="product-card">
+            <img src={{good.image.url}} alt="">
+              <h3>{{good.name}}</h3>
+              <p>${{good.price}}</p>
+              <p>{{good.description}}</p>
+              <button>Add to Cart</button>
+          </div>
+          {% endfor %}
+         
+          
+      </div>
+  </section>
+  
+   <!-- Testimonials Section -->
+   <section class="testimonials" id="testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial-container" id="testimonial-container">
+          <div class="testimonial-track">
+              <div class="testimonial-card">
+                  <img src="{% static './images/image2.png' %}" alt="Alice">
+                  <p>"Amazing products! Highly recommend."</p>
+                  <h4>- Alice</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/images1.png' %}" alt="Bob">
+                  <p>"Great customer service and fast delivery."</p>
+                  <h4>- Bob</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/photo-of-woman-wearing-headscarf-18205751.png' %}" alt="Charlie">
+                  <p>"Best shopping experience ever!"</p>
+                  <h4>- Charlie</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/image2.png' %}" alt="Alice">
+                  <p>"Amazing products! Highly recommend."</p>
+                  <h4>- Alice</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/images1.png' %}" alt="Bob">
+                  <p>"Great customer service and fast delivery."</p>
+                  <h4>- Bob</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/photo-of-woman-wearing-headscarf-18205751.png' %}" alt="Charlie">
+                  <p>"Best shopping experience ever!"</p>
+                  <h4>- Charlie</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/image2.png' %}" alt="Alice">
+                  <p>"Amazing products! Highly recommend."</p>
+                  <h4>- Alice</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/images1.png' %}" alt="Bob">
+                  <p>"Great customer service and fast delivery."</p>
+                  <h4>- Bob</h4>
+              </div>
+              <div class="testimonial-card">
+                  <img src="{% static './images/photo-of-woman-wearing-headscarf-18205751.png' %}" alt="Charlie">
+                  <p>"Best shopping experience ever!"</p>
+                  <h4>- Charlie</h4>
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+  {% endblock content  %}
+
+
+  
+
+ 
+  <script>
+      document.getElementById("menu-toggle").addEventListener("click", function() {
+          document.getElementById("nav-links").classList.toggle("active");
+      });
+
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+  const track = document.querySelector(".testimonial-track");
+
+  function autoScrollTestimonials() {
+      setInterval(() => {
+          track.appendChild(track.firstElementChild.cloneNode(true)); 
+          track.removeChild(track.firstElementChild);
+      }, 3000);
+  }
+
+  autoScrollTestimonials();
+});
+
+  </script>
+

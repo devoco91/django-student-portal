@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5 text-center">
+  <h2>Complete Payment for {{ student.name }}</h2>
+  <p>Course: <strong>{{ student.course.name }}</strong></p>
+  <p>Fee: <strong>&#8358;{{amount|floatformat:2}}</strong></p>
+  <button class="btn btn-success mt-3" onclick="payWithPaystack()">Pay with Paystack</button>
+</div>
+
+<script>
+function payWithPaystack() {
+  var handler = PaystackPop.setup({
+    key: 'pk_test_99d8f5a23465707c659bcd34e4658cd6acddaffe',
+    email: '{{ student.email }}',
+    amount: {{ amount|floatformat:0 }}00,
+    currency: 'NGN',
+    ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+    callback: function(response) {
+      fetch('/payment-success/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: new URLSearchParams({
+          'student_id': '{{ student.id }}',
+          'reference': response.reference
+        })
+      }).then(() => {
+        window.location.href = "/payment-success/";
+      });
+    },
+    onClose: function() {
+      alert('Transaction cancelled');
+    }
+  });
+  handler.openIframe();
+}
+</script>
+</body>
+</html>

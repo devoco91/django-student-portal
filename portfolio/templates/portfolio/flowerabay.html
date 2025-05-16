@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowerbay</title>
+    <link rel="stylesheet" href="{% static './css/flowerbay.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static './images/favicon.ico.png' %}">
+</head>
+<body>
+
+    <div class="firstnav">
+        <a href="tel:+234 803 790 7488">08037907488</a>
+        <a href="mailto:info@lasop.net">info@lasop.net</a>
+    </div>
+
+
+    <header>
+        <div id="branding">
+            <a href="">
+                <img src="{% static './images/logo.png' %}" alt="">
+            </a>
+           
+        </div>
+
+        <nav>
+            <ul>
+               <a href="about.html">
+                <li>about us</li>
+               </a>
+               <a href="gallery.html">
+                <li>gallery</li>
+               </a>
+               <a href="blog.html">
+                <li>blog</li>
+               </a>
+             
+               <a href="contact.html">
+                <li>contact us</li>
+               </a>
+
+              <a href="">
+                <li>
+                    <button>flower bay</button>
+                </li>
+              </a>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section class="hero">
+        <div class="herotext">
+            <h1>Flower Bay</h1>
+            <p>Lovely flowers at your disposal</p>
+            <button>shop now</button>
+        </div>
+
+
+        <div class="heroimg">
+            <img src="{% static './images/purepng1.png' %}" alt="">
+        </div>
+
+    </section>
+
+    <section class="display">
+        <div class="displaytext">
+            <h1>Our Flower Store</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa magni a quibusdam aut praesentium veritatis reprehenderit laudantium sapiente, magnam nesciunt vel eos velit, excepturi nam architecto! Est perspiciatis officiis ex.</p>
+        </div>
+
+        <div class="cards">
+            {% for product in products %}
+            <div class="card">
+              
+                <img src={{product.image.url}} alt="">
+                <h4>{{product.name}}</h4>
+                <p>{{product.description}}</p>
+                <p>&#8358;{{product.price}}</p>
+                <button>Order here</button>
+
+                
+            </div>
+            {% endfor %}
+            
+           
+         
+          
+        </div>
+    </section>
+
+    <section>
+        <div class="displaytext">
+            <h1>Our Flower Store</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa magni a quibusdam aut praesentium veritatis reprehenderit laudantium sapiente, magnam nesciunt vel eos velit, excepturi nam architecto! Est perspiciatis officiis ex.</p>
+        </div>
+
+        <div class="cardss">
+            <div class="card">
+                <img src="{% static './images/EnnyLennyVase.png' %}" alt="">
+                <h4>Enny Lenny Vase</h4>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate quibusdam dolore quo recusandae aperiam nihil.</p>
+                <p>&#8358;7 000</p>
+                <button>Order here</button>
+            </div>
+            <div class="card">
+                <img src="{% static './images/ElizabethVine.png' %}" alt="">
+                <h4>Elizabeth Vine Vase</h4>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate quibusdam dolore quo recusandae aperiam nihil.</p>
+                <p>&#8358;6 500</p>
+                <button>Order here</button>
+            </div>
+            <div class="card">
+                <img src="{% static './images/ClearEmerald.png' %}" alt="">
+                <h4>Clear Emerald Vase Set</h4>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate quibusdam dolore quo recusandae aperiam nihil.</p>
+
+                <p>&#8358;10 000</p>
+                <button>Order here</button>
+            </div>
+            
+           
+        </div>
+    </section>
+
+
+    <section class="about">
+        <div class="about-text">
+            <h1> What People Say About Us</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus deleniti ratione deserunt at officia, ducimus unde est neque iure vero eaque, ullam reprehenderit illum sed aspernatur. Quidem iusto asperiores cupiditate!
+            </p>
+            <p class="small">
+                Peter Parker
+            </p>
+
+        </div>
+
+        <div class="about-img">
+            <img src="{% static './images/photo-of-woman-wearing-headscarf-18205751.png' %}" alt="">
+        </div>
+            
+    </section>
+
+
+    <footer>
+        <div class="desc">
+            <h3>Flower Bay.</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad illum eaque: amet autem explicabo suscipit sapiente impedit velit minima! Eaque? Lorem ipsum: dolor sit amet, consectetur adipisicing elit. Deserunt, labore.</p>
+        </div>
+
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p><b>Lorem:</b> ipsum dolor sit amet.</p>
+            <p><b>Lorem:</b> ipsum dolor sit amet.</p>
+            <p><b>Lorem:</b> ipsum dolor sit amet.</p>
+        </div>
+
+        <div class="links">
+            <h3>Links</h3>
+            <a href="#">About Us</a>
+            <a href="#">Gallery</a>
+            <a href="#">Blog</a>
+            <a href="#">Shop here</a>
+        </div>
+
+        <div class="signup">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing</p>
+            <input type="text">
+            <button>Sign up</button>
+        </div>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,104 @@
+{% extends 'items/base.html' %}
+{% load static %}
+
+<title>
+{% block title %}
+
+Welcome to the post page
+{% endblock title %}
+</title>
+
+
+{% block content  %}
+
+<style>
+    
+.img{
+    width: 50px;
+    height: 50px;
+}
+
+
+body{
+  background: #7abecc !important;
+}
+</style>
+
+
+
+
+
+      
+      <div class="container">
+        
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+<div class="mb-3">
+<label for="exampleFormControlInput1" class="form-label">Name</label>
+<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name" Required name="name">
+</div>
+<div class="mb-3">
+<label for="exampleFormControlInput1" class="form-label">Price</label>
+<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Price" Required name="price">
+</div>
+<div class="mb-3">
+<label for="exampleFormControlTextarea1" class="form-label">Description</label>
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" Required name="description"></textarea>
+</div> 
+
+<div class="mb-3">
+<label for="formFile" class="form-label">Image(s) <i>If any</i></label>
+<input class="form-control" type="file" id="formFile" name="image">
+</div>
+<div class="d-grid mb-5">
+<button type="submit" class="btn btn-outline-primary btn-lg" >Submit</button>
+</div>
+</form>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% endblock content %}
+
+
+
+
+{% comment %}        
+    <div class="container">
+        
+      <div class="row">
+          <div class="col-md-4 mx-auto">
+              
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+
+          {{ form.as_ul }}
+          <button type='submit'>Submit</button>
+</form> {% endcomment %}
+    
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+
+<!-- <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div> -->
+<!--   
+  <div class="mb-3">
+    <label for="formFile" class="form-label">Default file input example</label>
+    <input class="form-control" type="file" id="formFile">
+  </div>
+  <button type="button" class="btn btn-outline-primary">Primary</button> -->
