@@ -25,8 +25,8 @@ admin.site.index_title='Welcome to Lagos School of Programming'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/response', views.simpleResponse),
+    path('response/', views.simpleResponse),
     path('', include('portfolio.urls')),
-    path('item', include('Items.urls')),
-    path('registration', include('registration.urls')),
+    path('item/', include('Items.urls')),
+    path('registration/', include('registration.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
