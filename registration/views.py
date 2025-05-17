@@ -66,7 +66,7 @@ def payment_success(request):
 
         return render(request, 'items/payment_success.html', {
             'student': student,
-            'ref': payment_reference
+            'reference': payment_reference
         })
 
     return redirect('dashboard')
