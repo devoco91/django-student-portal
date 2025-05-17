@@ -27,6 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('/response', views.simpleResponse),
     path('', include('portfolio.urls')),
-    path('', include('Items.urls')),
-    path('', include('registration.urls')),
+    path('item', include('Items.urls')),
+    path('registration', include('registration.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
