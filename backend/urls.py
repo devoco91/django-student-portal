@@ -19,6 +19,7 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from registration import views
 admin.site.site_header='Lasop Admin'
 admin.site.site_title='Lasop portal'
 admin.site.index_title='Welcome to Lagos School of Programming'
