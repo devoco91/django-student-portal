@@ -29,4 +29,5 @@ urlpatterns = [
     path('', include('portfolio.urls')),
     path('item/', include('Items.urls')),
     path('registration/', include('registration.urls')),
+    path('payment-success/',views.payment_success, name='payment-success'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
