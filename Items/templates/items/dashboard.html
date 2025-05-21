@@ -32,56 +32,52 @@
       <div class="card text-white bg-success mb-3">
         <div class="card-body">
           <h5 class="card-title">Total Amount Paid</h5>
-          <p class="card-text display-6">{{ total_paid|floatformat:2 }}</p>
+          <p class="card-text display-6">&#8358;{{ total_paid|floatformat:2 }}</p>
         </div>
       </div>
     </div>
   </div>
 
   <h4>Student Info</h4>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Course</th>
-        <th>Sex</th>
-        <th>Registered</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for student in students %}
-      <tr>
-        <td>{{ student.name }}</td>
-        <td>{{ student.email }}</td>
-        <td>{{ student.phone }}</td>
-        <td>
-          {% if student.course %}
-            {{ student.course.name }}
-          {% else %}
-            N/A
-          {% endif %}
-        </td>
-        <td>{{ student.get_sex_display }}</td>
-        <td>{{ student.date}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Course</th>
+          <th>Sex</th>
+          <th>Registered</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.phone }}</td>
+          <td>{{ student.course.name if student.course else 'N/A' }}</td>
+          <td>{{ student.get_sex_display }}</td>
+          <td>{{ student.date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
   <h4 class="mt-5">Payments</h4>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Student</th>
-        <th>Amount</th>
-        <th>Method</th>
-        <th>Reference</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Amount</th>
+          <th>Method</th>
+          <th>Reference</th>
+          <th>Date</th>
+        </tr>
+      </thead>
       <tbody>
         {% for payment in payments %}
         <tr>
@@ -92,10 +88,9 @@
           <td>{{ payment.Payment_date }}</td>
         </tr>
         {% endfor %}
-      
-      
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
 </body>
 </html>

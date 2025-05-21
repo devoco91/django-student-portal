@@ -1,8 +1,10 @@
+# Updated views.py
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import *
+from .models import Course, Student, Payment
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.db.models import Sum
+from django.views.decorators.http import require_POST
 
 
 def register_student(request):
@@ -25,7 +27,7 @@ def register_student(request):
                 'error': 'Selected course does not exist.'
             })
 
-        if name and course and sex and phone and address and email:
+        if all([name, email, address, phone, sex, course]):
             student = Student.objects.create(
                 name=name,
                 email=email,
@@ -49,28 +51,57 @@ def start_payment(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     return render(request, 'items/payment.html', {'student': student, 'amount': student.course.fee})
 
+
 @csrf_exempt
+@require_POST
 def payment_success(request):
-    if request.method == 'POST':
-        student_id = request.POST.get('student_id')
-        payment_reference = request.POST.get('reference')
+    student_id = request.POST.get('student_id')
+    payment_reference = request.POST.get('reference')
 
+    if not student_id or not payment_reference:
+        return JsonResponse({'error': 'Missing data'}, status=400)
+
+    try:
+        student = Student.objects.get(id=student_id)
+    except Student.DoesNotExist:
+        return JsonResponse({'error': 'Student not found'}, status=404)
+
+    if Payment.objects.filter(payment_reference=payment_reference).exists():
+        return JsonResponse({'error': 'Duplicate reference'}, status=409)
+
+    payment = Payment.objects.create(
+        student=student,
+        amount=student.course.fee,
+        Payment_method='paystack',
+        payment_reference=payment_reference
+    )
+
+    request.session['payment_ref'] = payment.payment_reference
+    request.session['student_id'] = student.id
+    return JsonResponse({'redirect': '/registration/payment-success/'})
+
+
+def payment_success_page(request):
+    ref = request.session.pop('payment_ref', None)
+    student_id = request.session.pop('student_id', None)
+
+    if ref and student_id:
         student = get_object_or_404(Student, id=student_id)
-
-        Payment.objects.create(
-            student=student,
-            amount=student.course.fee,
-            Payment_method='paystack',
-            payment_reference=payment_reference
-        )
+        students = Student.objects.all()
+        payments = Payment.objects.all()
+        total_students = students.count()
+        total_paid = payments.aggregate(total=Sum('amount'))['total'] or 0
 
         return render(request, 'items/payment_success.html', {
             'student': student,
-            'reference': payment_reference
+            'ref': ref,
+            'students': students,
+            'payments': payments,
+            'total_students': total_students,
+            'total_paid': total_paid
         })
 
     return redirect('dashboard')
-
 
 
 def dashboard(request):
@@ -79,11 +110,9 @@ def dashboard(request):
     total_students = students.count()
     total_paid = payments.aggregate(total=Sum('amount'))['total'] or 0
 
-    context = {
-        "students": students,
-        "payments": payments,
-        "total_students": total_students,
-        "total_paid": total_paid,
-    }
-
-    return render(request, 'items/dashboard.html', context)
+    return render(request, 'items/dashboard.html', {
+        'students': students,
+        'payments': payments,
+        'total_students': total_students,
+        'total_paid': total_paid,
+    })

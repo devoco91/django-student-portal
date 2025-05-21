@@ -4,9 +4,11 @@ from .forms import CreateUserForm,CreatePost
 from django.contrib.auth import authenticate,login,logout
 from django import forms
 from .models import *
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url="/item/login/")
 
 def indexPage(request):
     
@@ -18,30 +20,41 @@ def indexPage(request):
 
 def registerPage(request):
     
-    form=CreateUserForm()
-    if request.method=='POST':
-        form=CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user=form.cleaned_data.get('username')
-            messages.success(request,'Account was created for ' + user)
-            return redirect('login')
-        
-    context={'form':form}
     
-    return render(request,'items/register.html',context)
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    else:
+        
+        form=CreateUserForm()
+        if request.method=='POST':
+            form=CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user=form.cleaned_data.get('username')
+                messages.success(request,'Account was created for ' + user)
+                return redirect('login')
+            
+        context={'form':form}
+        
+        return render(request,'items/register.html',context)
 
 def loginPage(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    else:
+        
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('post')  
-            messages.info(request, 'Username OR Password is INCORRECT')
-    return render(request,'items/login.html')
+            if user is not None:
+                login(request, user)
+                return redirect('post')  
+                messages.info(request, 'Username OR Password is INCORRECT')
+        return render(request,'items/login.html')
 
 
 
@@ -63,7 +76,7 @@ def loginPage(request):
 
 
 
-
+@login_required(login_url="/item/login/")
 def postPage(request):
     if request.method == 'POST':
         name = request.POST.get('name')

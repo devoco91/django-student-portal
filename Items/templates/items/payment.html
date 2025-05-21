@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,39 +10,61 @@
 <div class="container mt-5 text-center">
   <h2>Complete Payment for {{ student.name }}</h2>
   <p>Course: <strong>{{ student.course.name }}</strong></p>
-  <p>Fee: <strong>&#8358;{{amount|floatformat:2}}</strong></p>
+  <p>Fee: <strong>&#8358;{{ amount|floatformat:2 }}</strong></p>
+
+  <form id="csrf-form">{% csrf_token %}</form>
   <button class="btn btn-success mt-3" onclick="payWithPaystack()">Pay with Paystack</button>
 </div>
-
 <script>
 function payWithPaystack() {
-  var handler = PaystackPop.setup({
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+  const handler = PaystackPop.setup({
     key: 'pk_test_99d8f5a23465707c659bcd34e4658cd6acddaffe',
     email: '{{ student.email }}',
-    amount: {{ amount|floatformat:0 }}00,
+    amount: parseInt({{ amount|floatformat:0 }} * 100),
     currency: 'NGN',
-    ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+    ref: '' + Math.floor(Math.random() * 1000000000 + 1),
     callback: function(response) {
-      fetch('/payment-success/', {
+      fetch('/registration/payment-webhook/', {
         method: 'POST',
+        mode: 'same-origin',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'X-CSRFToken': '{{ csrf_token }}'
+          'X-CSRFToken': csrfToken
         },
         body: new URLSearchParams({
           'student_id': '{{ student.id }}',
           'reference': response.reference
         })
-      }).then(() => {
-        window.location.href = "/payment-success/";
+      })
+      .then(async res => {
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`Server error ${res.status}: ${text}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        } else {
+          alert('Payment failed: ' + (data.error || 'Unknown error'));
+        }
+      })
+      .catch(err => {
+        alert('Request error: ' + err.message);
+        console.error(err);
       });
     },
     onClose: function() {
       alert('Transaction cancelled');
     }
   });
+
   handler.openIframe();
 }
 </script>
+
 </body>
 </html>
